@@ -1,5 +1,14 @@
 from address_book import AddressBook
-from handlers import add_contact, change_contact, contact_phone, all_contacts, add_birthday, show_birthday, birthdays
+from handlers import (
+    add_contact,
+    change_contact,
+    contact_phone,
+    all_contacts,
+    add_birthday,
+    show_birthday,
+    birthdays,
+    add_adress,
+)
 
 
 def parse_input(user_input):
@@ -14,51 +23,54 @@ def main():
     while True:
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
-        
+
         if command in ["close", "exit"]:
             print("Good bye!")
             break
-        
+
         elif command == "hello":
             print("How can I help you?")
-            
+
         elif command == "add":
             response = add_contact(args, contacts)
-            
-            if 'overwrite' in response:
+
+            if "overwrite" in response:
                 option = input(response)
                 try:
                     command = parse_input(option)[0]
                 except ValueError:
-                    print('Saving the contact was cancelled')
+                    print("Saving the contact was cancelled")
                     continue
-                 
-                if command == 'yes':
+
+                if command == "yes":
                     print(add_contact(args, contacts, True))
                 else:
-                    print('Saving the contact was cancelled')
+                    print("Saving the contact was cancelled")
             else:
                 print(response)
-                    
-        elif command == 'change':
+
+        elif command == "change":
             print(change_contact(args, contacts))
-            
-        elif command == 'phone':
+
+        elif command == "phone":
             print(contact_phone(args, contacts))
-            
-        elif command == 'all':
+
+        elif command == "all":
             print(all_contacts(contacts))
-            
-        elif command == 'add-birthday': 
+
+        elif command == "add-birthday":
             response = add_birthday(args, contacts)
             print(response)
-            
-        elif command == 'show-birthday':
+
+        elif command == "show-birthday":
             response = show_birthday(args, contacts)
             print(response)
 
-        elif command == 'birthdays':
+        elif command == "birthdays":
             birthdays(contacts)
+
+        elif command == "add-adress":
+            response = add_adress(args, contacts)
 
         else:
             print("Invalid command.")
