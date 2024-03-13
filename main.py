@@ -7,7 +7,7 @@ from src.handlers import (
     add_birthday,
     show_birthday,
     birthdays,
-    add_adress,
+    add_address,
 )
 
 
@@ -69,8 +69,8 @@ def main():
         elif command == "birthdays":
             birthdays(contacts)
 
-        elif command == "add-adress":
-            response = add_adress(args, contacts)
+        elif command == "add-address":
+            response = add_address(args, contacts)
 
         else:
             print("Invalid command.")
