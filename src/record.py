@@ -4,6 +4,7 @@ from src.birthday import Birthday
 from src.name import Name
 from src.phone import Phone
 from src.address import Address
+from src.email import Email
 
 
 class Record:
@@ -25,6 +26,7 @@ class Record:
         self.phones = []
         self.birthday = None
         self.address = None
+        self.email = None
 
     def add_phone(self, phone):
         """
@@ -108,6 +110,16 @@ class Record:
 
         """
         self.address = Address(address)
+
+    def add_email(self, email):
+        """
+        Add an email to the contact.
+
+        Args:
+            email (str): The email to add.
+
+        """
+        self.email = Email(email)
 
     def get_birthday(self):
         """

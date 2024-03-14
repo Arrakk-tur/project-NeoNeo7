@@ -2,7 +2,9 @@ from error_handler import input_error
 from address_book import AddressBook
 from record import Record
 from phone import Phone
+from email import Email
 import re
+
 
 PHONE_MASK = r"^\d{10}$"
 BLUE = "\033[94m"
@@ -115,11 +117,24 @@ def add_address(args, address_book):
     """
     Add handlers for address
     """
-    
     name, address = args
     record = address_book.find(name)
     if record:
         record.add_address(address)
         return f"Address added for {name}"
+    else:
+        return f"No contact found with name {name}"
+
+
+@input_error
+def add_email(args, address_book):
+    """
+    Add handlers for email
+    """
+    name, email = args
+    record = address_book.find(name)
+    if record:
+        record.add_email(email)
+        return f"Email added for {name}"
     else:
         return f"No contact found with name {name}"
