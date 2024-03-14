@@ -1,3 +1,5 @@
+
+
 elif command == 'find':
     try:
         contact_name = ' '.join(args)
