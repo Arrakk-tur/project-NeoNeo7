@@ -20,10 +20,10 @@ class Record:
 
     """
 
-    def __init__(self, name):
+    def __init__(self, name, birthday=None):
         self.name = name
-        self.phones = []
-        self.birthday = None
+        self.phone = ""
+        self.birthday = Birthday(birthday) if birthday else None
         self.adress = None
 
     def add_phone(self, phone):
@@ -37,9 +37,10 @@ class Record:
             ValueError: If the phone number is not a valid phone number.
 
         """
-        new_phone = Phone(phone)
-        new_phone.validate()
-        self.phones.append(new_phone)
+        self.phone = phone
+        # new_phone = Phone(phone)
+        # new_phone.validate()
+        # self.phones.append(new_phone)
 
     def remove_phone(self, phone):
         """
@@ -49,9 +50,10 @@ class Record:
             phone (str): The phone number to remove.
 
         """
-        self.phones = [p for p in self.phones if p.value != phone]
+        self.phone = None
+        # self.phones = [p for p in self.phones if p.value != phone]
 
-    def edit_phone(self, old_phone, new_phone):
+    def edit_phone(self, new_phone):
         """
         Edit a phone number in the contact.
 
@@ -63,7 +65,7 @@ class Record:
             ValueError: If the new phone number is not a valid phone number.
 
         """
-        self.remove_phone(old_phone)
+
         self.add_phone(new_phone)
 
     def find_phone(self, phone):
@@ -80,10 +82,11 @@ class Record:
             ValueError: If the phone number is not found.
 
         """
-        for p in self.phones:
-            if p.value == phone:
+        for p in self.phone:
+            if p == phone:
                 return p
-        raise ValueError("Phone not found.")
+        # raise ValueError("Phone not found.")
+        return None
 
     def add_birthday(self, birthday):
         """
@@ -117,7 +120,7 @@ class Record:
             str: The birthday in the format "dd.mm.yyyy".
 
         """
-        return f"Contact name: {self.name.value} have birthday: {self.birthday.strftime('%d.%m.%Y')}"
+        return f"Contact name: {self.name} have birthday: {self.birthday.strftime('%d.%m.%Y')}"
 
     def __str__(self):
         """
@@ -127,4 +130,4 @@ class Record:
             str: The name and phone numbers of the contact.
 
         """
-        return f"Contact name: {self.name.value} have phones: {'; '.join(p.value for p in self.phones)}"
+        return f"Contact name: {self.name} have phone: {self.phone}"

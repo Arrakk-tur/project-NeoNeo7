@@ -1,3 +1,5 @@
+import re
+
 from src.field import Field
 
 
@@ -11,15 +13,6 @@ class Phone(Field):
     """
 
     def __init__(self, value):
+        if not re.fullmatch(r"\d{10}", value):
+            raise ValueError("Phone number must contain 10 digits")
         super().__init__(value)
-
-    def validate(self):
-        """
-        Validates that the phone number is a 10-digit number.
-
-        Raises:
-            ValueError: If the phone number is not a 10-digit number.
-
-        """
-        if len(self.value) != 10 or not self.value.isdigit():
-            raise ValueError("Phone number should contained 10 digits")

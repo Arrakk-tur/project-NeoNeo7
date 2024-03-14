@@ -5,19 +5,16 @@ from src.record import Record
 
 class AddressBook(UserDict):
     def add_record(self, record: Record):
-        if record.name.value in self.data:
-            raise ValueError(f"Contact {record.name.value} already exists.")
-        self.data[record.name.value] = record
+        # if record.name in self.data:
+        #     raise ValueError(f"Contact {record.name} already exists.")
+        self.data[record.name] = record
 
     def find(self, name):
-        if name in self.data:
-            return self.data[name]
-        raise ValueError(f"Contact {name} not found.")
+        return self.data.get(name)
 
     def delete(self, name):
         if name not in self.data:
-            raise ValueError(f"Contact {name} not found.")
-        del self.data[name]
+            del self.data[name]
 
     def get_birthdays_per_week(self):
         today = datetime.today().date()

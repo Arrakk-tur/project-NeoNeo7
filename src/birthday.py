@@ -24,9 +24,9 @@ class Birthday(Field):
 
         """
         if (
-                re.match(
-                    "^(3[01]|[12][0-9]|0?[1-9])\.(0[1-9]|1[1,2])\.(19|20)\d{2}", self.value
-                )
-                is None
+            re.match(
+                "^(3[01]|[12][0-9]|0?[1-9])\.(0[1-9]|1[1,2])\.(19|20)\d{2}", self.value
+            )
+            is None
         ):
             raise ValueError("Invalid date format. Must be 'DD.MM.YYYY'")

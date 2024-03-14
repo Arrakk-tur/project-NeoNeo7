@@ -1,7 +1,7 @@
-from error_handler import input_error
-from address_book import AddressBook
-from record import Record
-from phone import Phone
+from src.error_handler import input_error
+from src.address_book import AddressBook
+from src.record import Record
+from src.phone import Phone
 import re
 
 PHONE_MASK = r"^\d{10}$"
@@ -30,7 +30,6 @@ def add_contact(args, address_book, is_consent=False):
 
 @input_error
 def change_contact(args, contacts):
-
     try:
         name, phone = args
     except:
@@ -50,7 +49,6 @@ def change_contact(args, contacts):
 
 @input_error
 def contact_phone(args, contacts):
-
     try:
         name = args[0]
     except IndexError:
@@ -73,11 +71,11 @@ def all_contacts(contacts):
     for contact in contacts.values():
         phone = contact.phone if contact.phone else "No phone"
         birthday = (
-            contact.birthday.value
-            if contact.birthday and contact.birthday.value
+            contact.birthday
+            if contact.birthday and contact.birthday
             else "No information"
         )
-        contact_list += f"{BLUE}{contact.name.value:<{max_name_length}}{ENDC}: phone: {phone}, birthday: {birthday}\n"
+        contact_list += f"{BLUE}{contact.name:<{max_name_length}}{ENDC}: phone: {phone}, birthday: {birthday}\n"
     return contact_list
 
 
@@ -97,8 +95,8 @@ def show_birthday(args, address_book):
     name = args[0]
     record = address_book.find(name)
     if record:
-        if record.birthday and record.birthday.value:
-            return f"Birthday of {name}: {record.birthday.value}"
+        if record.birthday and record.birthday:
+            return f"Birthday of {name}: {record.birthday}"
         else:
             return f"Birthday not set for {name}"
     else:
