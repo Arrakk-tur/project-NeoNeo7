@@ -102,7 +102,7 @@ class Record:
         self.birthday.validate()
         self.birthday = datetime.strptime(birthday, "%d.%m.%Y")
 
-    """Add method for adding address"""
+
 
     def add_address(self, address):
         """

@@ -117,7 +117,6 @@ def add_address(args, address_book):
     """
     Add handlers for address
     """
-
     name, address = args
     record = address_book.find(name)
     if record:
