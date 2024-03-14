@@ -3,7 +3,7 @@ from datetime import datetime
 from src.birthday import Birthday
 from src.name import Name
 from src.phone import Phone
-from src.adress import Adress
+from src.address import Address
 
 
 class Record:
@@ -24,7 +24,7 @@ class Record:
         self.name = name
         self.phones = []
         self.birthday = None
-        self.adress = None
+        self.address = None
 
     def add_phone(self, phone):
         """
@@ -100,14 +100,14 @@ class Record:
         self.birthday.validate()
         self.birthday = datetime.strptime(birthday, "%d.%m.%Y")
 
-    """Add method for adding adress"""
 
-    def add_adress(self, adress):
+
+    def add_address(self, address):
         """
-        Add an adress to the contact.
+        Add an address to the contact.
 
         """
-        self.adress = Adress(adress)
+        self.address = Address(address)
 
     def get_birthday(self):
         """

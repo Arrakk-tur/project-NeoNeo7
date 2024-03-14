@@ -110,15 +110,16 @@ def birthdays(address_book):
     address_book.get_birthdays_per_week()
 
 
-"""Add handlers for adress"""
-
-
 @input_error
-def add_adress(args, address_book):
-    name, adress = args
+def add_address(args, address_book):
+    """
+    Add handlers for address
+    """
+    
+    name, address = args
     record = address_book.find(name)
     if record:
-        record.add_adress(adress)
-        return f"Adress added for {name}"
+        record.add_address(address)
+        return f"Address added for {name}"
     else:
         return f"No contact found with name {name}"
